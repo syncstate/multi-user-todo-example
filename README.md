@@ -26,7 +26,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### 1. Clone this git repository
 
 ```
-git clone https://github.com/syncstate/multi-user-counter-example.git
+git clone https://github.com/syncstate/multi-user-todo-example.git
 ```
 
 ### 2. Install local npm dependencies
