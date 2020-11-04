@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 import Todo from "./Todo";
 import { useDoc } from "@syncstate/react";
 function App() {
   const todoPath = "/todos";
   const [todos, setTodos] = useDoc(todoPath);
   const [input, setInput] = useState("");
-  const getRand = () => {
-    return (
-      new Date().getTime().toString() + Math.floor(Math.random() * 1000000)
-    );
-  };
+
   const addTodo = (todoItem) => {
     setTodos((todos) => {
-      let id = getRand();
+      let id = uuidv4();
       todos.push({
         id: id,
         caption: todoItem,
