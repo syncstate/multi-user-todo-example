@@ -4,8 +4,6 @@ A todo app that syncs adding, deleting and filtering todos across multiple sessi
 
 ![Mult-User-Todo](./public/images/Todo.gif)
 
-### [View Github Code](https://github.com/syncstate/multi-user-todo-example)
-
 ## Instructions
 
 1.  ### Clone the github repository
