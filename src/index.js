@@ -10,19 +10,16 @@ import * as remote from "@syncstate/remote-client";
 
 const store = createDocStore({ todos: [] }, [remote.createInitializer()]);
 
+//enable remote plugin
 store.dispatch(remote.enableRemote("/todos"));
 
 //setting up socket connection with the server
 var socket = io.connect("http://localhost:8000");
 
-socket.on("loaded", (path) => {
-  store.dispatch(remote.applyRemote(path, false));
-});
-
-// loading the app for the first time
+// send request to server to get patches everytime when page reloads
 socket.emit("fetchDoc", "/todos");
 
-//whenever there is some attempt to change the store state
+//observe the changes in store state
 store.observe(
   "doc",
   "/todos",

@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="main-app">
       <div className="todo-app">
-        <h2>Multi User Todo App</h2>
+        <h1>Multi User Todo</h1>
         <br></br>
         <form
           onSubmit={(e) => {
@@ -37,8 +37,8 @@ function App() {
         >
           <input
             type="text"
-            className="input-todo"
             placeholder="What's on your mind?"
+            className="input-todo"
             onChange={(e) => {
               setInput(e.target.value);
             }}
