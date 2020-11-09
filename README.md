@@ -12,10 +12,14 @@ A todo app that syncs adding, deleting and filtering todos across multiple sessi
 git clone https://github.com/syncstate/multi-user-todo-example.git
 ```
 
-2. ### Install local npm dependencies
+2. ### Install local dependencies
 
 ```bash
-npm start
+# NPM
+npm install
+
+# Yarn
+yarn install
 ```
 
 3. ### Run the server
