@@ -6,45 +6,46 @@ function App() {
   const todoPath = "/todos";
   const [todos, setTodos] = useDoc(todoPath);
   const [input, setInput] = useState("");
-  const getRand = () => {
-    return (
-      new Date().getTime().toString() + Math.floor(Math.random() * 1000000)
-    );
-  };
+
+  const keyGenerator = () => "_" + Math.random().toString(36).substr(2, 9);
   const addTodo = (todoItem) => {
     setTodos((todos) => {
-      let id = getRand();
+      let id = keyGenerator();
       todos.push({
         id: id,
         caption: todoItem,
         completed: false,
       });
+      document.getElementsByClassName("input-todo")[0].value = "";
     });
   };
 
   const todoList = todos.map((todo, index) => {
-    return <Todo key={todo.id} todoPath={todoPath + "/" + index} />;
+    return <Todo key={index} todoPath={todoPath + "/" + index} />;
   });
   return (
-    <div className="App">
-      <h1>Multi-User Todo App</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addTodo(input);
-          setInput("");
-        }}
-      >
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
+    <div className="main-app">
+      <div className="todo-app">
+        <h1>Multi User Todo</h1>
+        <br></br>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addTodo(input);
+            setInput("");
           }}
-        ></input>
-        <input type="submit" value="Submit"></input>
-      </form>
-      {todoList}
+        >
+          <input
+            type="text"
+            placeholder="What's on your mind?"
+            className="input-todo"
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
+          ></input>
+        </form>
+        {todoList}
+      </div>
     </div>
   );
 }
