@@ -37,7 +37,8 @@ function AddTodo({ addTodo }) {
       </div>
       <div className="ml-auto">
         <button
-          className="btn btn-primary"
+          type="button"
+          className="border-0 btn-transition btn btn-outline-danger"
           onClick={(e) => {
             e.preventDefault();
             addTodo(input);
