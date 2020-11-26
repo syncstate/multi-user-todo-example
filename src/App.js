@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import Todo from "./Todo";
+import Todo from "./components/Todo";
+import AddTodo from "./components/AddTodo";
 import { useDoc } from "@syncstate/react";
+
 function App() {
   const todoPath = "/todos";
   const [todos, setTodos] = useDoc(todoPath);
-  const [input, setInput] = useState("");
 
   const keyGenerator = () => "_" + Math.random().toString(36).substr(2, 9);
   const addTodo = (todoItem) => {
@@ -20,31 +21,38 @@ function App() {
     });
   };
 
-  const todoList = todos.map((todo, index) => {
-    return <Todo key={index} todoPath={todoPath + "/" + index} />;
+  const todoList = todos.map((todoItem, index) => {
+    return (
+      <li key={todoItem.index} className="list-group-item">
+        <Todo todo={todoItem} todoPath={todoPath + "/" + index} />
+      </li>
+    );
   });
+
   return (
-    <div className="main-app">
-      <div className="todo-app">
-        <h1>Multi User Todo</h1>
-        <br></br>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            addTodo(input);
-            setInput("");
-          }}
-        >
-          <input
-            type="text"
-            placeholder="What's on your mind?"
-            className="input-todo"
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-          ></input>
-        </form>
-        {todoList}
+    <div className="container mt-5">
+      <h2 className="text-center text-white">
+        Multi User Todo Using SyncState
+      </h2>
+      <div className="row justify-content-center mt-5">
+        <div className="col-md-8">
+          <div className="card-hover-shadow-2x mb-3 card">
+            <div className="card-header-tab card-header">
+              <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
+                <i className="fa fa-tasks"></i>&nbsp;Task Lists
+              </div>
+            </div>
+            <div
+              className="overflow-auto"
+              style={{ height: "auto", maxHeight: "300px" }}
+            >
+              <div className="position-static">
+                <ul className=" list-group list-group-flush">{todoList}</ul>
+              </div>
+            </div>
+            <AddTodo addTodo={addTodo} />
+          </div>
+        </div>
       </div>
     </div>
   );
