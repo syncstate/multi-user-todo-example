@@ -2,7 +2,7 @@
 
 A todo app that syncs adding, deleting and filtering todos across multiple sessions and is persistent to new connections.
 
-![Mult-User-Todo](./public/images/Todo.gif)
+![Mult-User-Todo](./public/images/todo.gif)
 
 ## Instructions
 
