@@ -14,7 +14,7 @@ const store = createDocStore({ todos: [] }, [remote.createInitializer()]);
 store.dispatch(remote.enableRemote("/todos"));
 
 //setting up socket connection with the server
-const socket = io.connect("http://localhost:8000");
+let socket = io.connect("http://localhost:8000");
 
 // send request to server to get patches everytime when page reloads
 socket.emit("fetchDoc", "/todos");

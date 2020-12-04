@@ -1,15 +1,21 @@
 import React from "react";
 import { useDoc } from "@syncstate/react";
 
-function Todo({ todoPath }) {
+function TodoItem({ todoItemPath }) {
   const [todos, setTodos] = useDoc("/todos", Infinity);
-  const [todoItem, setTodoItem] = useDoc(todoPath);
+  const [todoItem, setTodoItem] = useDoc(todoItemPath);
 
   const deleteTodo = (id) => {
-    let newTodos = todos.filter((todo) => {
-      return todo.id !== id;
+    let index;
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    setTodos((todos) => {
+      todos.splice(index, 1);
     });
-    setTodos(newTodos);
   };
   const toggleTodo = (completed) => {
     setTodoItem((todoItem) => {
@@ -17,11 +23,9 @@ function Todo({ todoPath }) {
     });
   };
 
-  const getTxtStyle = () => {
-    return {
-      textDecoration: todoItem.completed ? "line-through" : "none",
-      marginLeft: "10px",
-    };
+  const getTxtStyle = {
+    textDecoration: todoItem.completed ? "line-through" : "none",
+    marginLeft: "10px",
   };
 
   return (
@@ -43,7 +47,7 @@ function Todo({ todoPath }) {
 
         <div
           className="d-flex align-items-center todoTitle"
-          style={getTxtStyle()}
+          style={getTxtStyle}
         >
           <div style={{ width: "100%" }}>{todoItem.caption} </div>
         </div>
@@ -62,4 +66,4 @@ function Todo({ todoPath }) {
   );
 }
 
-export default Todo;
+export default TodoItem;

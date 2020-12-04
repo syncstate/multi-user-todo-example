@@ -2,7 +2,7 @@
 
 A todo app that syncs adding, deleting and filtering todos across multiple sessions and is persistent to new connections. You can read more about it in this [article](https://stories.geekyants.com/multi-user-todo-app-using-syncstate).
 
-![Mult-User-Todo](./public/images/Todo.gif)
+![Mult-User-Todo](./public/images/todo.gif)
 
 ## Instructions
 
