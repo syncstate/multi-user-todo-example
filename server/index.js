@@ -10,7 +10,7 @@ const server = app.listen(8000, function () {
 });
 
 const io = socket(server);
-const projectId = uuidv4();
+const projectId = uuidv4(); //generate unique id
 
 let patchManager = new PatchManager();
 
